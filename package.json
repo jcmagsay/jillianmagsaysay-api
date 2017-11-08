@@ -6,7 +6,7 @@
   "scripts": {
     "build": "node_modules/babel-cli/bin/babel.js ./ --source-maps --out-dir dist",
     "start": "node_modules/nodemon/bin/nodemon.js -- node_modules/babel-cli/bin/babel-node.js server.js",
-    "insert:data": "node_modules/babel-cli/bin/babel-node.js data/aboutData.js",
+    "insert:data": "node_modules/babel-cli/bin/babel-node.js insert.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
