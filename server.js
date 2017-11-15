@@ -1,20 +1,28 @@
 import express from 'express';
-import morgan from 'morgan';
+import dotenv from 'dotenv';
+import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import router from './router';
 
+dotenv.config();
+
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/about');
+mongoose.createConnection(process.env.MONGOLAB_URI, (error) => {
+  if (error) console.error(error);
+  else console.log('MongoDB connected for jillianmagsaysay-api!')
+}, { useMongoClient: true});
+
+mongoose.connect(process.env.MONGOLAB_URI, { useMongoClient: true});
 
 // Initialize http server
 const app = express();
 
-// Logger that outputs all requests into the console
-app.use(morgan('combined'));
-// Use v1 as prefix for all API endpoints
-app.use('/v1', router);
+app
+  .use(bodyParser.json()) // support json encoded bodies
+  .use(bodyParser.urlencoded({ extended: true }))
+  .use('/api', router); // Use v1 as prefix for all API endpoints
 
-const server = app.listen(3000, () => {
-  const { address, port } = server.address();
-  console.log(`Listening at http://${address}:${port}`);
-});
+const server = app.listen(process.env.PORT || 5000, () => {
+    const { address, port } = server.address();
+    console.log(`Listening at http://${address}:${port}`);
+  });

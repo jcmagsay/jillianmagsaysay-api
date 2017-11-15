@@ -7,4 +7,4 @@ var aboutSchema = new Schema({
 });
 
 // Export Mongoose model
-export default mongoose.model('about', aboutSchema);
+export default mongoose.model('About', aboutSchema);

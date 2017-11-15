@@ -1,11 +1,19 @@
 import express, { Router } from 'express';
-import { index } from './controllers/aboutController.js';
+import { add, get } from './controllers/aboutController.js';
 
 // Initialize the router
-const router = Router();
+let router = Router();
 
-// Handle /movies.json route with index action from movies controller
-router.route('/about.json')
-  .get(index);
+router.get('/', (req, res) => {
+  res.json({
+    message: 'Connected to jillianmagsaysay-api!'
+  })
+});
+
+// Adds new about data
+router.route('/about/add').post(add);
+
+// Gets all about data
+router.route('/about/get').get(get);
 
 export default router;
