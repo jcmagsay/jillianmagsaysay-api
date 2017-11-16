@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import { add, get } from './controllers/aboutController.js';
+import { postCallback, deleteCallback, getAllCallback, getByIdCallback, putCallback } from './controllers/aboutController.js';
 
 // Initialize the router
 let router = Router();
@@ -10,10 +10,13 @@ router.get('/', (req, res) => {
   })
 });
 
-// Adds new about data
-router.route('/about/add').post(add);
+router.route('/about')
+  .get(getAllCallback)  // Gets all about data
+  .post(postCallback); // Adds new about data
 
-// Gets all about data
-router.route('/about/get').get(get);
+router.route('/about/:id')
+  .delete(deleteCallback)
+  .get(getByIdCallback)
+  .put(putCallback);
 
 export default router;
