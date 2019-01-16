@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import AboutRow from '../models/aboutModel';
+import AboutRow from './models/aboutModel';
 
 const aboutData = [
   {
@@ -25,12 +25,13 @@ const aboutData = [
 ];
 
 // Connect to MongoDB
-mongoose.createConnection('mongodb://localhost/about');
+mongoose.createConnection('mongodb://127.0.0.1/api');
 
 // Go through each movie
 aboutData.map(data => {
   // Initialize a model with movie data
   const about = new AboutRow(data);
   // and save it into the database
+  console.log(data)
   about.save();
 });

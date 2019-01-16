@@ -6,8 +6,8 @@
   "scripts": {
     "build": "node_modules/babel-cli/bin/babel.js ./ --source-maps --out-dir dist",
     "start": "node_modules/nodemon/bin/nodemon.js -- node_modules/babel-cli/bin/babel-node.js server.js",
-    "start:db": "mongod --dbpath data/db",
-    "insert:data": "node_modules/babel-cli/bin/babel-node.js insert.js",
+    "start:db": "mongod",
+    "insert:data": "node_modules/babel-cli/bin/babel-node.js insertData.js",
     "postbuild": "yarn start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,9 +15,10 @@
     "type": "git",
     "url": "https://github.com/jcmagsay/jillianmagsaysay-api.git"
   },
+  "enginesStrict": true,
   "engines": {
-    "node": "6",
-    "npm": "3"
+    "node": ">= 10",
+    "npm": ">= 6"
   },
   "author": "Jill Magsaysay",
   "license": "ISC",

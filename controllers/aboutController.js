@@ -2,6 +2,7 @@ import About from '../models/aboutModel';
 
 // Find all about data entries and return json response
 export const getAllCallback = (req, res, next) => {
+  console.log('getAllCallback')
   // Iterate through each about entry
   About.find().lean().exec((err, rows) => res.json({
     data: rows.map(row => ({ ...row }))
